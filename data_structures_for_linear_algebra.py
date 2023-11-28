@@ -42,6 +42,90 @@ def plotting_a_system_of_linear_equations():
     plt.show()
 
 
+def linear_algebra_exercise():
+    import numpy as np
+    import matplotlib.pyplot as plt
+
+    t = np.linspace(0, 50, 1000)  # start, finish, n points
+
+    d_a = t
+    d_b = 4 * (t - 30)
+
+    fig, ax = plt.subplots()
+    plt.title('Solar panels')
+    plt.xlabel('time (in days)')
+    plt.ylabel('power (in kJ)')
+    ax.set_xlim([0, 50])
+    ax.set_ylim([0, 70])
+    ax.plot(t, d_a, c='green')
+    ax.plot(t, d_b, c='brown')
+    plt.axvline(x=40, color='purple', linestyle='--')
+    _ = plt.axhline(y=40, color='purple', linestyle='--')
+
+    plt.show()
+
+
+def tensors():
+    print("tensors")
+
+    # A scalar is a single value.
+    # A vector is a one dimensional array.
+    # A matrix is essentially a two dimensional array.
+    # A tensor generalizes vectors and matrices to any number of dimensions.
+
+
+def scalars():
+    # scalar properties
+    # no dimensions
+    # single number
+    # denoted in lowercase, italics
+    # should be typed, like all other tensors: e.g. int, float32
+
+    x = 25
+
+    print(x)
+    print(type(x))
+
+    y = 3.5
+
+    print(type(y))
+
+    # pytorch
+    import torch
+
+    x_pt = torch.tensor(25)
+
+    print(x_pt)
+    print(x_pt.shape)
+
+    # pytorch and tensorflow seem to be alternatives to each other
+    import tensorflow as tf
+
+    x_tf = tf.Variable(25, dtype=tf.int16)
+
+    print(x_tf)
+    print(x_tf.shape)
+
+    y_tf = tf.Variable(3, dtype=tf.int16)
+
+    print(x_tf + y_tf)
+
+    tf_sum = tf.add(x_tf, y_tf)
+
+    print(tf_sum)
+
+    print(tf_sum.numpy())
+
+    print(type(tf_sum.numpy()))
+
+    tf_float = tf.Variable(25., dtype=tf.float16)
+
+    print(tf_float)
+
+
 def data_structures_for_linear_algebra_fn():
     what_is_linear_algebra()
     # plotting_a_system_of_linear_equations()
+    # linear_algebra_exercise()
+    tensors()
+    scalars()
