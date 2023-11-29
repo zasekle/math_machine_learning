@@ -1,3 +1,13 @@
+import numpy as np
+
+# pytorch
+import torch
+# pytorch and tensorflow seem to be alternatives to each other
+import tensorflow as tf
+
+import matplotlib.pyplot as plt
+
+
 def what_is_linear_algebra():
     print("what_is_linear_algebra() running!")
 
@@ -20,9 +30,6 @@ def what_is_linear_algebra():
 
 
 def plotting_a_system_of_linear_equations():
-    import numpy as np
-    import matplotlib.pyplot as plt
-
     t = np.linspace(0, 40, 1000)  # start, finish, n points
 
     d_r = 2.5 * t
@@ -43,9 +50,6 @@ def plotting_a_system_of_linear_equations():
 
 
 def linear_algebra_exercise():
-    import numpy as np
-    import matplotlib.pyplot as plt
-
     t = np.linspace(0, 50, 1000)  # start, finish, n points
 
     d_a = t
@@ -90,16 +94,10 @@ def scalars():
 
     print(type(y))
 
-    # pytorch
-    import torch
-
     x_pt = torch.tensor(25)
 
     print(x_pt)
     print(x_pt.shape)
-
-    # pytorch and tensorflow seem to be alternatives to each other
-    import tensorflow as tf
 
     x_tf = tf.Variable(25, dtype=tf.int16)
 
@@ -123,9 +121,94 @@ def scalars():
     print(tf_float)
 
 
+def vectors():
+    # vector properties
+    # one-dimensional array of numbers
+    # denoted in lowercase, italics, bold
+    # arranged in an order, so element can be accessed by its index
+    #    Elements are scalars so not bold
+    # can represents a point in space (2 elements is 2D, etc)
+
+    # transition
+    # this will transition a row vector to a column vector or vise versa
+    # [x1, x2]T = [x1,
+    #              x2]
+    # shape is the vectors (columns, rows) so the above vectors are (1, 2) and (2, 1) respectively
+
+    # type argument is optional, e.g.: dtype=np.float16
+    x = np.array([25, 2, 5])
+
+    print(len(x))
+    print(x.shape)
+    print(type(x))
+    print(x[0])
+    print(type(x[0]))
+
+    # notice the double brackets, this will give it a shape and allow transposition
+    y = np.array([[4, 5, 6]])
+    y_t = y.transpose()
+
+    print(y)
+    print(y.shape)
+    print(y_t)
+    print(y_t.shape)
+
+    # transpose brings it back to the original
+    print(y_t.transpose())
+    print(y_t.transpose().shape)
+
+    # creating an array in pytorch
+    x_pt = torch.tensor([1, 2, 3])
+
+    print(x_pt)
+
+    # creating an array in tensorflow
+    x_tf = tf.Variable([6, 5, 4])
+
+    print(x_tf)
+
+
+def norms_and_unit_vectors():
+    # vectors can be used to represent a magnitude and direction from the origin (a line segment)
+    # norms are functions that quantify vector magnitude
+    # the most straightforward norm is the distance formula called L2 norm expanded for multiple dimensions
+    #   sqrt(a^2+b^2...)= ||x||2
+    #   this measures the simple Euclidean distance from the origin
+    #   sometimes simple called (||x||)
+
+    x = np.array([1, 2, 3])
+
+    # L2 norm
+    print(np.linalg.norm(x))
+
+    # a unit vector is a vector where the magnitude is 1
+
+    # L1 norm
+    # this is the sum of absolute values of vector elements
+    #   sum(abs(xi)) = ||x||1
+
+    # squared L2 norm
+    # this is L2 norm squared (can simply remove the sqrt before the calculation is done)
+    # cheap operation comparatively to L2 (no sqrt)
+    # grows slowly near origin when using very small numbers
+    print(np.dot(x, x))
+
+    # max norm (or L∞ norm)
+    # this returns the largest element of the absolute value of the elements (so for [1,2,3] it would return 3)
+    # max(|xi|)
+    print(np.max([np.abs(x[0]), np.abs(x[1]), np.abs(x[2])]))
+
+    # generalized case of norms is a specific equation called Lp norm
+    # (sum(abs(xi)^p))^1/2 = ||x||p
+    # p must be a real number >= 1
+    # this is the reason they are known by numbers, L2 norm means p = 2
+
+
 def data_structures_for_linear_algebra_fn():
     what_is_linear_algebra()
     # plotting_a_system_of_linear_equations()
     # linear_algebra_exercise()
     tensors()
     scalars()
+    vectors()
+    norms_and_unit_vectors()
