@@ -35,6 +35,66 @@ def matrix_multiplication():
     print(np.dot(a, b))
 
 
+def symmetric_and_identity_matrices():
+    # A symmetric matrix has the following properties
+    #   Square
+    #   The transpose must be equal to itself.
+
+    x_sym = np.array([[0, 1, 2], [1, 7, 8], [2, 8, 9]])
+
+    print(x_sym == x_sym.transpose())
+
+    # An identity matrix is a special case of a symmetric matrix. It occurs when every element along the main diagonal
+    # is 1 and all other elements are 0.
+    #   The notation is In where n is the number or rows or columns.
+    #   This matrix is special because an n-length vector is unchanged if multiplied by In.
+
+    i = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
+
+    x_mul = np.dot(x_sym, i)
+    print(x_mul == x_sym)
+
+
+def matrix_multiplication_exercises():
+    a = np.array([[0, 1, 2], [3, 4, 5], [6, 7, 8]])
+    b = np.array([[-1], [1], [-2]])
+
+    print(np.dot(a, b))
+
+    a = np.array([[0, 1, 2], [3, 4, 5], [6, 7, 8]])
+    b = np.array([[-1, 0], [1, 1], [-2, 2]])
+
+    print(np.dot(a, b))
+
+
+def matrix_inversion():
+    # Matrix inversion is an alternative to manually solving with substitution or elimination.
+    # Matrix inverse of X is denoted as X^-1.
+    # Satisfies X^-1 * X = In
+    # This can be used just like any inverse to solve an equation.
+    # n = X*y
+    # X^-1*n = y
+    # However, it can only be used to solve an equation if a solution exists. Or in other words the matrix isn't
+    #  singular (all columns must be non parallel in a geometric sense).
+
+    x = np.array([[4, 2], [-5, -3]])
+
+    x_inv = np.linalg.inv(x)
+
+    print(x_inv)
+    print(np.dot(x_inv, x))
+
+    x = np.array([[-4, 1], [-8, 2]])
+
+    print(x)
+
+    # This matrix is NOT able to be inverted.
+    # np.linalg.inv(x)
+
+
 def matrix_properties_fn():
     the_frobenius_norm()
     matrix_multiplication()
+    symmetric_and_identity_matrices()
+    matrix_multiplication_exercises()
+    matrix_inversion()
