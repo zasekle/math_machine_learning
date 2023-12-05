@@ -58,7 +58,7 @@ def the_dot_product():
     #   a dot b = |a| * |b| * cos(angle)
     # conceptually the dot produce represents projection and similarity, so how much one vector projects onto another,
     #  or another way of looking at it is how similar the vectors are, a dot product where the vectors are 90 degrees
-    #  are zero
+    #   are zero
 
     # as a side note, the cross product result represents a vector that is perpendicular to both vectors
 

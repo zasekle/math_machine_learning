@@ -92,9 +92,98 @@ def matrix_inversion():
     # np.linalg.inv(x)
 
 
+def diagonal_matrices():
+    # A diagonal matrix has nonzero elements along the main diagonal and zeros everywhere else. The identify matrix is
+    #  an example of a diagonal matrix. If the matrix is square, it can be denoted as diag(x) where x is the vector of
+    #  the main-diagonal elements.
+    #    Multiplication: diag(x)y = x ⨀ y
+    #    Inversion: diag(x)-1 = diag[1/x1, ..., 1/xn]T; Note that we cannot have zero here because zero cannot be the
+    #     denominator
+    #    If the diagonal matrix is non-square, this is still computationally efficient.
+    print("diagonal_matrices")
+
+
+def orthogonal_matrices():
+    # Or orthogonal matrix, orthonormal vectors make up all rows AND all columns.
+    #   This means AT * A = A * AT = I;
+    #     If we multiply the above by A-1 we end up with the below equation.
+    #   AT = A-1 * I = A-1
+    #     This means that because calculation AT is cheap, therefore calculating A-1
+    print("orthogonal_matrices")
+
+
+def check_if_orthogonal_matrix(a):
+    # all rows are orthogonal
+    b = np.dot(a[0], a[1])
+    if b != 0:
+        return False
+
+    b = np.dot(a[0], a[2])
+    if b != 0:
+        return False
+
+    b = np.dot(a[1], a[2])
+    if b != 0:
+        return False
+
+    # all columns are orthogonal
+    b = np.dot(a[:, 0], a[:, 1])
+    if b != 0:
+        return False
+
+    b = np.dot(a[:, 0], a[:, 2])
+    if b != 0:
+        return False
+
+    b = np.dot(a[:, 1], a[:, 2])
+    if b != 0:
+        return False
+
+    # all rows are normal
+    b = np.linalg.norm(a[0])
+    if b != 1.0:
+        return False
+
+    b = np.linalg.norm(a[1])
+    if b != 1.0:
+        return False
+
+    b = np.linalg.norm(a[2])
+    if b != 1.0:
+        return False
+
+    # all columns are normal
+    b = np.linalg.norm(a[:, 0])
+    if b != 1.0:
+        return False
+
+    b = np.linalg.norm(a[:, 1])
+    if b != 1.0:
+        return False
+
+    b = np.linalg.norm(a[:, 2])
+    if b != 1.0:
+        return False
+
+    return True
+
+
+def orthogonal_matrix_exercises():
+    a = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
+
+    print(check_if_orthogonal_matrix(a))
+
+    a = np.array([[2 / 3, 1 / 3, 2 / 3], [-2 / 3, 2 / 3, 1 / 3], [1 / 3, 2 / 3, -2 / 3]])
+
+    print(check_if_orthogonal_matrix(a))
+
+
 def matrix_properties_fn():
     the_frobenius_norm()
     matrix_multiplication()
     symmetric_and_identity_matrices()
     matrix_multiplication_exercises()
     matrix_inversion()
+    diagonal_matrices()
+    orthogonal_matrices()
+    orthogonal_matrix_exercises()
