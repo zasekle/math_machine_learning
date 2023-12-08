@@ -76,7 +76,41 @@ def affine_transformations():
     plt.show()
 
 
+def eigenvectors_and_eigenvalues():
+    # An eigenvector of a linear transformation (represented by a matrix) is a non-zero vector that changes at most by
+    #  a scalar factor when that linear transformation is applied to it.
+    # An eigenvalue is the scalar by which the eigenvector is scaled during the transformation. Note that this is the
+    #  amount that the vector changed AFTER the change not the scalar or matrix that caused the change.
+    # An eigenvector stays along the same axis in the sense that it doesn't rotate or change direction under the
+    #  transformation.
+
+    # To conceptualize this, think of a as the transformation matrix for a 2d vector. Of all the vectors that exist
+    #  inside 2d space, there are a few where this transformation will only scale them. These vectors are called
+    #  eigenvectors and the amount they are scaled is called the eigenvalue.
+    a = np.array([[-1, 4], [2, -2]])
+
+    # This will calculate possible eigenvalues and eigenvectors for the given array. The column V[:,i] is the
+    #  eigenvector corresponding to the eigenvalue lambdas[i].
+    values, vectors = np.linalg.eig(a)
+
+    print(values)
+    print(vectors)
+
+    v = vectors[:, 0]
+    Av = np.dot(a, v)
+
+    # The scalar times the eigenvector and the original times the eigenvector will give the same result. That is
+    #  because of the relationship of Av = Lv where v is the eigenvector, L is the lambda and A is the original array.
+    print(values[0] * v == Av)
+
+    plot_vectors([Av, v], ['blue', 'lightblue'])
+    plt.xlim(-1, 2)
+    _ = plt.ylim(-1, 2)
+    # plt.show()
+
+
 def eigenvectors_and_eigenvalues_fn():
     segment_intro()
     applying_matrices()
-    affine_transformations()
+    # affine_transformations()
+    eigenvectors_and_eigenvalues()
