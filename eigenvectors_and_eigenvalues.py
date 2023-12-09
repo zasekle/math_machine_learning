@@ -109,8 +109,28 @@ def eigenvectors_and_eigenvalues():
     # plt.show()
 
 
+def matrix_determinants():
+    # A matrix determinant maps a square matrix to a scalar.
+    #   It allows us to determine whether matrix can be inverted. If the det(X) = 0, then the matrix has no inversion.
+
+    x = np.array([[4, 2], [-5, -3]])
+
+    print(np.linalg.det(x))
+
+
+def determinants_of_larger_matrices():
+    # Calculating the determinant of matrices larger than 2x2 is recursive in nature. Essentially you break the matrix
+    #  down into smaller sections and calculate the value of those, then add or subtract them together.
+
+    x = np.array([[1, 2, 4], [2, -1, 3], [0, 5, 1]])
+
+    print(np.linalg.det(x))
+
+
 def eigenvectors_and_eigenvalues_fn():
     segment_intro()
     applying_matrices()
     # affine_transformations()
     eigenvectors_and_eigenvalues()
+    matrix_determinants()
+    determinants_of_larger_matrices()
