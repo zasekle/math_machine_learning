@@ -127,6 +127,34 @@ def determinants_of_larger_matrices():
     print(np.linalg.det(x))
 
 
+def determinant_exercises():
+    x = np.array([[25, 2], [3, 4]])
+
+    # 94
+    print(np.linalg.det(x))
+
+    x = np.array([[-2, 0], [0, -2]])
+
+    # 4
+    print(np.linalg.det(x))
+
+    x = np.array([
+        [2, 1, -3],
+        [4, -5, 2],
+        [0, -1, 3]
+    ])
+
+    # 2 * (-15 + 2) = -26
+    # 1 * (12 - 0) = 12
+    # -3 * (-4 - 0) = 12
+    # -26 - 12 + 12 = -26
+    print(np.linalg.det(x))
+
+
+def determinants_and_eigenvalues():
+
+
+
 def eigenvectors_and_eigenvalues_fn():
     segment_intro()
     applying_matrices()
@@ -134,3 +162,5 @@ def eigenvectors_and_eigenvalues_fn():
     eigenvectors_and_eigenvalues()
     matrix_determinants()
     determinants_of_larger_matrices()
+    determinant_exercises()
+    determinants_and_eigenvalues()
