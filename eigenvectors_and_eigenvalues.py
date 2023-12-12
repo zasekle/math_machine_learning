@@ -152,7 +152,28 @@ def determinant_exercises():
 
 
 def determinants_and_eigenvalues():
+    # The relationship between determinants and eigenvalues is `det(X) = product of all eigenvalues of X`.
+    # abs(det(x)) quantifies volume change as a result of applying x.
+    #   If det(x) = 0, then x collapses space completely in at least one dimension, eliminating all volume.
+    #   If 0 abs(det(x)) < 1, then x contracts volume to some extent.
+    #   If abs(det(x)) == 1, then is will preserve volume.
+    #   If abs(det(x)) > 1, then the volume will increase.
 
+    x = np.array([
+        [1, 2, 4],
+        [2, -1, 3],
+        [0, 5, 1],
+    ])
+
+    lambdas, V = np.linalg.eig(x)
+    det = np.linalg.det(x)
+
+    # These are the same because of the relationship between the product of the eigenvalues and teh determinant.
+    print(np.product(lambdas))
+    print(det)
+
+    # This value is ~20, so the volume will increase with this transformation.
+    print(np.abs(det))
 
 
 def eigenvectors_and_eigenvalues_fn():
