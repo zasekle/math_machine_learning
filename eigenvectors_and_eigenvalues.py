@@ -100,7 +100,8 @@ def eigenvectors_and_eigenvalues():
     Av = np.dot(a, v)
 
     # The scalar times the eigenvector and the original times the eigenvector will give the same result. That is
-    #  because of the relationship of Av = Lv where v is the eigenvector, L is the lambda and A is the original array.
+    #  because of the relationship of Av = Lv where v is the eigenvector, L is the eigenvalue and A is the original
+    #  array.
     print(values[0] * v == Av)
 
     plot_vectors([Av, v], ['blue', 'lightblue'])
@@ -176,6 +177,54 @@ def determinants_and_eigenvalues():
     print(np.abs(det))
 
 
+def eigendecomposition():
+    # A = V Λ V^-1
+    #   A is the original square matrix that we are decomposing.
+    #   V contains all the eigenvectors of A as its columns.
+    #   Λ (capital lambda) is a diagonal matrix containing the eigenvalues of A.
+    #   V^-1 is the inverse of matrix V.
+    # The decomposition of a matrix into eigenvectors and eigenvalues reveals characteristics of the matrix, e.g.
+    #   Matrix is singular if and only if any of its eigenvalues are zero.
+    #   Under specific conditions, we ca n optimize quadratic expressions
+    #     Maximum of f(x) = largest eigenvalue
+    #     Minimum of f(x) = smallest eigenvalue.
+
+    a = np.array([[4, 2], [-5, -3]])
+
+    lambdas, v = np.linalg.eig(a)
+
+    v_inv = np.linalg.inv(v)
+
+    diag = np.diag(lambdas)
+
+    print(v)
+    print(v_inv)
+    print(diag)
+
+    # A = V Λ V^-1
+    print(a)
+    print(np.dot(v, np.dot(diag, v_inv)))
+
+    # eigendecomposition is not possible with all matrices. And in some cases where it is possible, the
+    #  eigendecomposition involves complex numbers instead of straightforward real numbers.
+    # In machine learning, however, we are typically working with real symmetric matrices, which can be conveniently and
+    #  effectively decompose into real-only eigenvectors and real-only eigenvalues.
+
+    # A = Q Λ Qt
+    #   This formula is the same as the above formula except V is not Q and it is the transpose of Q instead of the
+    #   inverse of V.
+    #   This formula is important in machine learning because the transpose is cheaper to calculate that the inverse.
+
+    a = np.array([[2, 1], [1, 2]])
+
+    lambdas, q = np.linalg.eig(a)
+
+    diag = np.diag(lambdas)
+
+    print(a)
+    print(np.dot(q, np.dot(diag, q.T)))
+
+
 def eigenvectors_and_eigenvalues_fn():
     segment_intro()
     applying_matrices()
@@ -185,3 +234,4 @@ def eigenvectors_and_eigenvalues_fn():
     determinants_of_larger_matrices()
     determinant_exercises()
     determinants_and_eigenvalues()
+    eigendecomposition()
