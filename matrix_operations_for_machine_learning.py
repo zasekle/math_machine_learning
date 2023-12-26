@@ -154,8 +154,44 @@ def regression_with_the_pseudo_inverse():
     plt.show()
 
 
+def the_trace_operator():
+    # The trace operator, denoted as Tr(A) is simply the sum of the diagonal elements of a matrix.
+    #   Tr(A) = Tr(A^T)
+    #   Tr(A*B*C) = Tr(C*A*B) = Tr(B*C*A)
+    #   This is a convenient way to calculate the Forbenius norm ||A||F = sqrt(Tr(A * A^T)) (
+
+    A = np.array([[25, 2], [5, 4]])
+
+    print(25 + 4)
+    print(np.trace(A))
+
+
+def principal_component_analysis_pca():
+    # Principal component analysis (PCA) is a simple machine learning algorithm.
+    #   It is Unsupervised which means that it does not have any "labels". This allows it to find patterns in the data
+    #    without any extra information.
+    #   This enables lossy compression. Just like eigendecomposition and SVD the first principle component contains the
+    #    most variance, the second will be second etc...
+
+    # There was an example given, however it requires me to download an example.
+    print("PCA")
+
+
+def resources_for_further_study():
+    # Linear algebra references.
+    #   3Blue1Brown YouTube channel
+    #   Ch. 2 of Goodfellow et al. (2016)
+    #   Ch. 2 of Deisenroth et al. (2020)
+    #   Sheldon Axler's (2015)
+
+    print("resources_for_further_study")
+
+
 def matrix_operations_for_machine_learning_fn():
     singular_value_decomposition()
     # data_compression_with_svd()
     the_moore_penrose_pseudo_inverse()
-    regression_with_the_pseudo_inverse()
+    # regression_with_the_pseudo_inverse()
+    the_trace_operator()
+    principal_component_analysis_pca()
+    resources_for_further_study()
