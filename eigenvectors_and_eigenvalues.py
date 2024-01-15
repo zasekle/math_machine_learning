@@ -189,7 +189,10 @@ def eigendecomposition():
     #     Maximum of f(x) = largest eigenvalue
     #     Minimum of f(x) = smallest eigenvalue.
 
-    a = np.array([[4, 2], [-5, -3]])
+    a = np.array([
+        [4, 2],
+        [-5, -3]
+    ])
 
     lambdas, v = np.linalg.eig(a)
 
@@ -229,7 +232,7 @@ def eigenvectors_and_eigenvalues_fn():
     segment_intro()
     applying_matrices()
     # affine_transformations()
-    eigenvectors_and_eigenvalues()
+    # eigenvectors_and_eigenvalues()
     matrix_determinants()
     determinants_of_larger_matrices()
     determinant_exercises()

@@ -6,11 +6,11 @@ from matrix_operations_for_machine_learning import matrix_operations_for_machine
 from limits import limits_fn
 
 if __name__ == '__main__':
-    data_structures_for_linear_algebra_fn()
-    tensor_operations_fn()
-    matrix_properties_fn()
-    eigenvectors_and_eigenvalues_fn()
-    matrix_operations_for_machine_learning_fn()
+    # data_structures_for_linear_algebra_fn()
+    # tensor_operations_fn()
+    # matrix_properties_fn()
+    # eigenvectors_and_eigenvalues_fn()
+    # matrix_operations_for_machine_learning_fn()
     limits_fn()
 
 
