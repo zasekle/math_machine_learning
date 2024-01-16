@@ -54,8 +54,21 @@ def calculus_of_infinitesimals():
     plt.show()
 
 
+def calculus_applications():
+    print("calculus_applications")
+
+    # Derivatives can be used to show the minimum or maximum of things. These things can be cost OR used in machine
+    #  learning to find the minimum of a curve (I assume where the formula is not solvable).
+    #  2nd and higher derivatives can be taken more quickly and so they can be used in optimizations.
+
+    # Integrals can find the area under a curve. This allows for something called "Receiver operating characteristic" to
+    #  be used. This is a useful algorithm for binary situations such as "is this a dog" or "is it true/false" things
+    #  along those lines.
+
+
 def limits_fn():
     intro_to_differential_calculus()
     intro_to_integral_calculus()
     the_method_of_exhaustion()
     # calculus_of_infinitesimals()
+    calculus_applications()
