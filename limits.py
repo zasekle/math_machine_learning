@@ -66,9 +66,43 @@ def calculus_applications():
     #  along those lines.
 
 
+def calculating_limits():
+    print("calculating_limits")
+
+    # For continuous functions, limits are trivial to calculate. For example, as x -> 5 for x^2 + 2x + x, I would simply
+    #  plug in the value 5 for x and get as x -> 5; y -> 37.
+
+    # For non-continuous functions however, limits can be more difficult. For example, as x -> 0 for sin(x)/x, we cannot
+    #  divide by 0 meaning that we will have to take a more brute force approach to find that as x -> 0 y -> 1.
+
+    # It is also common for limits to approach infinity. For example, in 25/x as x -> 0. In this case as x -> 0 (from
+    # left); y -> -∞ as x -> 0 (from right); y -> ∞.
+
+
+def exercises_on_limits():
+    print("exercises_on_limits")
+
+    # 1. x -> 0 in (x^2 - 1)/(x-1) = (0 - 1)/(0 - 1) = 1
+    #  x -> 0; y -> 1
+
+    # 2. x -> -5 in (x^2 - 25)/(x + 5) = (x-5)(x+5)/(x+5) = x-5
+    #  x -> -5; y -> -10
+
+    # 3. x -> 4 in (x^2 - 2x - 8)/(x - 4) = (x + 2)(x - 4)/(x - 4) = x + 2
+    #  x -> 4; y -> 6
+
+    # 4. x -> -∞ in 25/x
+    #  x -> -∞; y -> 0
+
+    # 5. x -> 0 in 25/x
+    #  x -> 0^-; y -> -∞ as x -> 0^+; y -> ∞
+
+
 def limits_fn():
     intro_to_differential_calculus()
     intro_to_integral_calculus()
     the_method_of_exhaustion()
     # calculus_of_infinitesimals()
     calculus_applications()
+    calculating_limits()
+    exercises_on_limits()
