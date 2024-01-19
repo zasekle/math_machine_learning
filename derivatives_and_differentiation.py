@@ -48,5 +48,27 @@ def the_delta_method():
     plt.show()
 
 
+def how_derivatives_arise_from_limits():
+    print("how_derivatives_arise_from_limits")
+
+    # He goes through a simple derivation and example of
+    # dx / dy = lim Δx->0 (f(x + Δx) - f(x)) / Δx
+
+
+def derivative_notation():
+    print("derivative_notation")
+
+    # popular method for a derivative include
+    # y' f'(x) dy/dx df(x)/dx Dxf
+    # y'' f''(x) d^2y/d^2x d^2f(x)/d^2x D^2xf
+
+
+def the_derivative_of_a_constant():
+    print("the_derivative_of_a_constant")
+
+    # assuming c is a constant, then dc/dx = 0
+
+
 def derivatives_and_differentiation_fn():
     the_delta_method()
+    how_derivatives_arise_from_limits()
