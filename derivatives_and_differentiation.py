@@ -69,6 +69,23 @@ def the_derivative_of_a_constant():
     # assuming c is a constant, then dc/dx = 0
 
 
+def the_power_rule():
+    print("the_power_rule")
+
+    # this is the most basic rule, it says that dx^n/dx = nx^(n-1)
+    # e.g. x^3 -> 3x^2
+
+
+def the_constant_multiple_rule():
+    print("the_constant_multiple_rule")
+
+    # d(c*y)/dx = c * dy/dx
+
+
 def derivatives_and_differentiation_fn():
     the_delta_method()
     how_derivatives_arise_from_limits()
+    derivative_notation()
+    the_derivative_of_a_constant()
+    the_power_rule()
+    the_constant_multiple_rule()
