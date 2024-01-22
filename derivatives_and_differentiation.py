@@ -82,6 +82,28 @@ def the_constant_multiple_rule():
     # d(c*y)/dx = c * dy/dx
 
 
+def the_sum_rule():
+    print("the_sum_rule")
+
+    # d(y + w)/dx = dy/dx + dw/dx
+
+
+def exercises_on_derivative_rules():
+    print("exercises_on_derivative_rules")
+
+    # -15x^2
+    # 4x + 2
+    # 50x^4 - 18x - 1
+    # 2 * 2 + 2 = 6
+    # 2 * -1 + 2 = 0
+
+
+def the_product_rule():
+    print("the_product_rule")
+
+    # d(wz)/dx = wdz/dx + zdw/dx
+
+
 def derivatives_and_differentiation_fn():
     the_delta_method()
     how_derivatives_arise_from_limits()
@@ -89,3 +111,6 @@ def derivatives_and_differentiation_fn():
     the_derivative_of_a_constant()
     the_power_rule()
     the_constant_multiple_rule()
+    the_sum_rule()
+    exercises_on_derivative_rules()
+    the_product_rule()
