@@ -104,6 +104,38 @@ def the_product_rule():
     # d(wz)/dx = wdz/dx + zdw/dx
 
 
+def the_quotient_rule():
+    print("the_quotient_rule")
+
+    # d(w/z)/dx = (zdw/dx - wdz/dx)/z^2
+
+
+def the_chain_rule():
+    print("the_chain_rule")
+
+    # dy/dx = dy/du * du/dx
+
+
+def advanced_exercises_on_derivative_rules():
+    print("advanced_exercises_on_derivative_rules")
+
+    # 1. (2x^2 + 6x)*(6x^2 + 10x) + (2x^3 + 5x^2)*(4x + 6)
+    # 12x^4 + 20x^3 + 36x^3 + 60x^2 + 8x^4 + 12x^3 + 20x^3 + 30x^2
+    # 20x^4 + 88x^3 + 90x^2
+    # 2. ((2 - x) * 12x - 6x^2 * -1)/(2 - x)^2
+    # (24x - 12x^2 + 6x^2)/(2 - x)^2
+    # (-6x^2 + 24x)/(2 - x)^2
+    # 3. (2 * (3x + 1)) * 3
+    # 3 * (6x + 2)
+    # 18x + 6
+    # 4. (6 * (x^2 + 5x)^5) * (2x + 5)
+    # 5. dy/du * du/dx
+    # dy/du * (du/dw * dw/dx)
+    # w = x^4 + 1
+    # u = (x^4 + 1)^5 + 7 = w^5 + 7
+    # -1 * ((x^4 + 1)^5 + 7)^-2 * (5 * (x^4 + 1)^4 * 4x^3)
+
+
 def derivatives_and_differentiation_fn():
     the_delta_method()
     how_derivatives_arise_from_limits()
@@ -114,3 +146,6 @@ def derivatives_and_differentiation_fn():
     the_sum_rule()
     exercises_on_derivative_rules()
     the_product_rule()
+    the_quotient_rule()
+    the_chain_rule()
+    advanced_exercises_on_derivative_rules()
