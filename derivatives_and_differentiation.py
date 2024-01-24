@@ -136,6 +136,12 @@ def advanced_exercises_on_derivative_rules():
     # -1 * ((x^4 + 1)^5 + 7)^-2 * (5 * (x^4 + 1)^4 * 4x^3)
 
 
+def the_power_rule_on_a_function_chain():
+    print("the_power_rule_on_a_function_chain")
+
+    # du^n/dx = nu^(n-1) * du/dx
+
+
 def derivatives_and_differentiation_fn():
     the_delta_method()
     how_derivatives_arise_from_limits()
@@ -149,3 +155,4 @@ def derivatives_and_differentiation_fn():
     the_quotient_rule()
     the_chain_rule()
     advanced_exercises_on_derivative_rules()
+    the_power_rule_on_a_function_chain()
