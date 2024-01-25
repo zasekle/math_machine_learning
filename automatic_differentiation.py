@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-# pytorch
 import torch
+import tensorflow as tf
 
 
 def segment_intro():
@@ -30,15 +30,13 @@ def what_automatic_differentiation_is():
 
 
 def autodiff_with_pytorch():
-    print("autodiff_with_pytorch")
-
     # TensorFlow and PyTorch are the two most popular automatic differentiation libraries.
 
     # calculating dy/dx at x = 5 where y = x^2 (the answer is 10)
 
     x = torch.tensor(5.0)
 
-    x.requires_grad_()
+    x.requires_grad_()  # track forward pass
 
     y = x ** 2
 
@@ -46,12 +44,25 @@ def autodiff_with_pytorch():
     #  the tensor. After that, an operation (x ** 2) is done on the tensor. Finally, the backward() method is called
     #  which will apply the chain rule to all operations (staring at the last operation and moving backwards) that have
     #  been done to this tensor. This will allow the gradient to be calculated.
-    y.backward()
+    y.backward()  # use autodiff
 
     print(x.grad)
+
+
+def autodiff_with_tensorflow():
+    # calculating dy/dx at x = 5 where y = x^2 (the answer is 10)
+
+    x = tf.Variable(5.0)
+
+    with tf.GradientTape() as t:
+        t.watch(x)  # track forward pass
+        y = x ** 2
+
+    print(t.gradient(y, x))  # use autodiff
 
 
 def automatic_differentiation_fn():
     segment_intro()
     what_automatic_differentiation_is()
     autodiff_with_pytorch()
+    autodiff_with_tensorflow()
