@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import numpy as np
 
 import torch
 import tensorflow as tf
@@ -61,6 +60,25 @@ def autodiff_with_tensorflow():
     print(t.gradient(y, x))  # use autodiff
 
 
+def regression(my_x, my_m, my_b):
+    return my_m * my_x + my_b
+
+
+def regression_plot(my_x, my_y, my_m, my_b):
+    fig, ax = plt.subplots()
+
+    ax.scatter(my_x, my_y)
+
+    x_min, x_max = ax.get_xlim()
+    y_min = regression(x_min, my_m, my_b).detach().item()
+    y_max = regression(x_max, my_m, my_b).detach().item()
+
+    ax.set_xlim([x_min, x_max])
+    _ = ax.plot([x_min, x_max], [y_min, y_max])
+
+    plt.show()
+
+
 def fitting_a_line_with_machine_learning():
     # Using pytorch automatic differentiation library to fit a straight line to data points. y = mx + b
 
@@ -73,22 +91,49 @@ def fitting_a_line_with_machine_learning():
     m = torch.tensor([0.9]).requires_grad_()
     b = torch.tensor([0.1]).requires_grad_()
 
-    def regression(my_x, my_m, my_b):
-        return my_m * my_x + my_b
+    regression_plot(x, y, m, b)
 
-    def regression_plot(my_x, my_y, my_m, my_b):
-        fig, ax = plt.subplots()
 
-        ax.scatter(my_x, my_y)
+def machine_learning_with_autodiff():
 
-        x_min, x_max = ax.get_xlim()
-        y_min = regression(x_min, my_m, my_b).detach().item()
-        y_max = regression(x_max, my_m, my_b).detach().item()
+    # Note that in a real situation you want a huge number of points here because that will give the algorithm higher
+    #  precision in the final value.
+    x = torch.tensor([0, 1, 2, 3, 4, 5, 6, 7.])
 
-        ax.set_xlim([x_min, x_max])
-        _ = ax.plot([x_min, x_max], [y_min, y_max])
+    # this will simulate a y value with some random noisy to be more realistic
+    y = -0.5 * x + 2 + torch.normal(mean=torch.zeros(8), std=0.2)
 
-        plt.show()
+    # set up data points that the model will need to do some work for
+    m = torch.tensor([0.9]).requires_grad_()
+    b = torch.tensor([0.1]).requires_grad_()
+
+    optimizer = torch.optim.SGD([m, b], lr=0.01)
+
+    epochs = 1000
+    for i in range(epochs):
+        # reset gradients to zero; else they accumulate
+        optimizer.zero_grad()
+
+        # Step 1: Forward pass to calculate what y is with the current values for m and b.
+        yhat = regression(x, m, b)
+
+        def mean_squared_error_loss(my_yhat, my_y):
+            sigma = torch.sum((my_yhat - my_y) ** 2)
+            return sigma / len(my_y)
+
+        # Step 2: Calculate cost meaning how close the regression is to the true points.
+        cost = mean_squared_error_loss(yhat, y)
+
+        # Step 3: Use automatic differentiation to calculate the gradient of cost with respect to initial parameters.
+        #  This will show which direction the values for m and b need to go in order to get closer. NOTE: If this gives
+        #  direction of the change, what gives magnitude of the change?
+        cost.backward()
+
+        # Step 4: Gradient descent, so move along the gradient towards the minimum. NOTE: The lr parameter seems to have
+        #  something to do with the magnitude I mentioned above. However, we aren't going into gradient descent yet.
+        optimizer = torch.optim.SGD([m, b], lr=0.01)
+
+        optimizer.step()
 
     regression_plot(x, y, m, b)
 
@@ -98,4 +143,5 @@ def automatic_differentiation_fn():
     what_automatic_differentiation_is()
     autodiff_with_pytorch()
     autodiff_with_tensorflow()
-    fitting_a_line_with_machine_learning()
+    # fitting_a_line_with_machine_learning()
+    machine_learning_with_autodiff()
