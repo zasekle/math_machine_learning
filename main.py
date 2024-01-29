@@ -6,6 +6,7 @@ from matrix_operations_for_machine_learning import matrix_operations_for_machine
 from limits import limits_fn
 from derivatives_and_differentiation import derivatives_and_differentiation_fn
 from automatic_differentiation import automatic_differentiation_fn
+from partial_derivative_calculus import partial_derivative_calculus_fn
 
 if __name__ == '__main__':
     # data_structures_for_linear_algebra_fn()
@@ -15,4 +16,5 @@ if __name__ == '__main__':
     # matrix_operations_for_machine_learning_fn()
     # limits_fn()
     # derivatives_and_differentiation_fn()
-    automatic_differentiation_fn()
+    # automatic_differentiation_fn()
+    partial_derivative_calculus_fn()
