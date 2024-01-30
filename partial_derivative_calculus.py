@@ -6,14 +6,15 @@ import tensorflow as tf
 import math  # for constant pi
 
 
+def f(my_x, my_y):
+    return my_x ** 2 - my_y ** 2
+
+
 def what_partial_derivatives_are():
     # Even in a simple multivariate function such as y = mx + b, y is a function of multiple variables. Therefore, we
     #  can't calculate the full derivative dy/dm or dy/db.
     # Consider the equation z = x^2 - y^2. The partial derivative of dz/dx is obtained by considering y to be a
     #  constant. So dz/dx = 2x - 0 = 2x.
-
-    def f(my_x, my_y):
-        return my_x ** 2 - my_y ** 2
 
     xs = np.linspace(-3, 3, 1000)
 
@@ -55,5 +56,34 @@ def what_partial_derivatives_are():
     # Likewise the partial derivative of the above equation is dz/dy = -2y which ends up as an inverted parabola.
 
 
+def partial_derivative_exercises():
+    print("partial_derivative_exercises")
+
+    # z = x^2 - y^2
+    # dz/dx = 2x
+    # dz/dy = -2y
+    # 1) x = 3, y = 0
+    #  z = 9; dz/dx = 6; dz/dy = 0
+    # 2) x = 2, y = 3
+    #  z = -5; dz/dx = 4; dz/dy = -6
+    # 3) x = -2, y = -3
+    #  z = -5; dz/dx = -4; dz/dy = 6
+
+
+def calculating_partial_derivatives_with_autodiff():
+    x = torch.tensor(3.).requires_grad_()
+    y = torch.tensor(0.).requires_grad_()
+
+    # gradient tracking is contagious (it flows forward to z)
+    z = f(x, y)
+
+    z.backward()
+
+    print(x.grad)
+    print(y.grad)
+
+
 def partial_derivative_calculus_fn():
-    what_partial_derivatives_are()
+    # what_partial_derivatives_are()
+    partial_derivative_exercises()
+    calculating_partial_derivatives_with_autodiff()
