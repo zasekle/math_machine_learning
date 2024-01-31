@@ -83,7 +83,36 @@ def calculating_partial_derivatives_with_autodiff():
     print(y.grad)
 
 
+def advanced_partial_derivatives():
+    print("advanced_partial_derivatives")
+
+    # We can get a physical representation of what partial derivatives mean as well. For example, with the formula for
+    #  the area of a cylinder v = pi*r^2*l then dv/dl = pi*r^2. This means that when r is held constant (say r = 3) we
+    #  can find how much a change in l corresponds to a change in v.
+
+    def cylinder_vol(my_r, my_l):
+        return math.pi * my_r ** 2 * my_l
+
+    r = torch.tensor(3.).requires_grad_()
+    l = torch.tensor(5.).requires_grad_()
+
+    v = cylinder_vol(r, l)
+
+    print(v)
+
+    v.backward()
+
+    # This means that for every one unit l changes, v changes by 28.27 units^3.
+    print(l.grad)
+
+    # For example, with an extra unit for l, v will come out to 141 + 28 = 169. Remember that in this example it is only
+    #  true because l is not part of the equation. So with dv/dr = 2*pi*r*l, r is part of the equation and so the 2nd
+    #  derivative would need to be used for a constant value.
+    print(cylinder_vol(3, 6))
+
+
 def partial_derivative_calculus_fn():
     # what_partial_derivatives_are()
     partial_derivative_exercises()
     calculating_partial_derivatives_with_autodiff()
+    advanced_partial_derivatives()
