@@ -111,8 +111,59 @@ def advanced_partial_derivatives():
     print(cylinder_vol(3, 6))
 
 
+def advanced_partial_derivative_exercises():
+    print("advanced_partial_derivative_exercises")
+
+    # Find all partial derivatives of the following functions.
+    # 1) z = y^3 + 5xy
+    # 2) The surface area of a cylinder is described by a = 2*pi*r^2 + 2*pi*r*h.
+    # 3) The volume of a square prism with a cube cut out of its center is described by v = x^2*y - z^3.
+
+    # z = y^3 + 5xy
+    #  dz/dx = 5y
+    #  dz/dy = 3y^2 + 5x
+    # a = 2*pi*r^2 + 2*pi*r*h
+    #  da/dr = 4*pi*r + 2*pi*h
+    #  da/dh = 2*pi*r
+    # v = x^2*y - z^3
+    #  dv/dx = 2*x*y
+    #  dv/dy = x^2
+    #  dv/dz = -3z^2
+
+
+def partial_derivative_notation():
+    print("partial_derivative_notation")
+
+    # Several common ways of listing partial derivatives are listed below.
+    # z = f(x, y)
+    # dz/dx
+    # df/dx
+    # fx
+    # Dxf
+
+
+def the_chain_rule_for_partial_derivatives():
+    print("the_chain_rule_for_partial_derivatives")
+
+    # If there is a nested function where y = f(u) and u = g(x) then the chain rule for full derivatives would be:
+    #  dy/dx = dy/du * du/dx
+    # With univariate functions, the partial derivative is identical:
+    #  dy/dx = dy/du * du/dx
+    # For example, lets say that there are two different functions y = f(u) and u = g(x, z) this means that:
+    #  dy/dx = dy/du * du/dx
+    #  dy/dz = dy/du * du/dz
+
+
+def exercises_on_the_multivariate_chain_rule():
+    print("exercises_on_the_multivariate_chain_rule")
+
+
+
 def partial_derivative_calculus_fn():
     # what_partial_derivatives_are()
     partial_derivative_exercises()
     calculating_partial_derivatives_with_autodiff()
     advanced_partial_derivatives()
+    partial_derivative_notation()
+    the_chain_rule_for_partial_derivatives()
+    exercises_on_the_multivariate_chain_rule()
