@@ -157,6 +157,45 @@ def the_chain_rule_for_partial_derivatives():
 def exercises_on_the_multivariate_chain_rule():
     print("exercises_on_the_multivariate_chain_rule")
 
+    # 1) y=f(u,v), u=g(x), v=h(z)
+    #  dy/dx dy/dz
+    # 2) y=f(u,v), u=g(x), v=h(x,z)
+    #  dy/dx dy/dz
+    # 3) y=f(u,v,w), u=g(x), v=h(x), w=j(x)
+    #  dy/dx
+
+
+def point_by_point_regression():
+    print("point_by_point_regression")
+
+    xs = torch.tensor([0, 1, 2, 3, 4, 5, 6, 7.])
+    ys = torch.tensor([1.86, 1.31, .62, .33, .09, -.67, -1.23, -1.37])
+
+    def regression(my_x, my_m, my_b):
+        return my_m*my_x + my_b
+
+    m = torch.tensor([0.9]).requires_grad_()
+    b = torch.tensor([0.1]).requires_grad_()
+
+    i = 7
+    x = xs[i]
+    y = ys[i]
+
+    # This is a pretty arbitrary estimate.
+    yhat = regression(x, m, b)
+
+    def squared_error(my_yhat, my_y):
+        return (my_yhat - my_y)**2
+
+    C = squared_error(yhat, y)
+
+    C.backward()
+
+    # The partial derivative of C with respect to m(dC/dm)
+    print(m.grad())
+
+    # The partial derivative of C with respect to b(dC/db)
+    print(b.grad())
 
 
 def partial_derivative_calculus_fn():
@@ -167,3 +206,4 @@ def partial_derivative_calculus_fn():
     partial_derivative_notation()
     the_chain_rule_for_partial_derivatives()
     exercises_on_the_multivariate_chain_rule()
+    point_by_point_regression()
