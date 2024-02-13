@@ -172,7 +172,7 @@ def point_by_point_regression():
     ys = torch.tensor([1.86, 1.31, .62, .33, .09, -.67, -1.23, -1.37])
 
     def regression(my_x, my_m, my_b):
-        return my_m*my_x + my_b
+        return my_m * my_x + my_b
 
     m = torch.tensor([0.9]).requires_grad_()
     b = torch.tensor([0.1]).requires_grad_()
@@ -185,17 +185,38 @@ def point_by_point_regression():
     yhat = regression(x, m, b)
 
     def squared_error(my_yhat, my_y):
-        return (my_yhat - my_y)**2
+        return (my_yhat - my_y) ** 2
 
     C = squared_error(yhat, y)
 
     C.backward()
 
     # The partial derivative of C with respect to m(dC/dm)
-    print(m.grad())
+    print(m.grad)
 
     # The partial derivative of C with respect to b(dC/db)
-    print(b.grad())
+    print(b.grad)
+
+
+def the_gradient_of_quadratic_cost():
+    print("the_gradient_of_quadratic_cost")
+
+    # Starting with the equation y = mx + b.
+    # When starting with the cost of the function (the error) the function used is C = (yhat - y)^2. The actual
+    #  functions that we are interested in however, are dC/db and dC/dm. So a simple derivation is as follows.
+    #  C = (yhat - y)^2
+    #   dC/dyhat = 2(yhat - y)
+    #  yhat = mx + b
+    #   dyhat/db = 1
+    #   dyhat/dm = x
+    #  dC/dyhat * dyhat/db = dC/db = 2(yhat - y)
+    #  dC/dyhat * dyhat/dm = dC/dm = 2x(yhat - y)
+    #  These derivations are what are happening internally in the previous section. It is how the libraries actually use
+    #   auto differentiation to calculate stuff.
+
+    # ∇C is the gradient of cost, it is a vector of all the partial derivatives of C with respect to each of the
+    #  individual model parameters.  In the above case there are only two parameters, so
+    #  ∇C = [dC/db, dC/dm]^(transpose).
 
 
 def partial_derivative_calculus_fn():
@@ -207,3 +228,4 @@ def partial_derivative_calculus_fn():
     the_chain_rule_for_partial_derivatives()
     exercises_on_the_multivariate_chain_rule()
     point_by_point_regression()
+    the_gradient_of_quadratic_cost()
