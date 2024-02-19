@@ -219,6 +219,34 @@ def the_gradient_of_quadratic_cost():
     #  ∇C = [dC/db, dC/dm]^(transpose).
 
 
+def descending_the_gradient_of_cost():
+    print("descending_the_gradient_of_cost")
+
+    xs = torch.tensor([0, 1, 2, 3, 4, 5, 6, 7])
+    ys = torch.tensor([1.86, 1.31, .62, .33, .09, -.67, -1.23, -1.37])
+
+    def regression(my_x, my_m, my_b):
+        return my_m * my_x + my_b
+
+    m = torch.tensor([0.9]).requires_grad_()
+    b = torch.tensor([0.1]).requires_grad_()
+
+    # This is a pretty arbitrary estimate.
+    yhat = regression(xs, m, b)
+
+    def mean_squared_error(my_yhat, my_y):
+        sigma = torch.sum((my_yhat - my_y)**2)
+        return sigma/len(my_y)
+
+    cost = mean_squared_error(yhat, ys)
+
+    # Use autodiff to calculate gradient of cost with respect to parameters.
+    cost.backward()
+
+    print(m.grad)
+    print(b.grad)
+
+
 def partial_derivative_calculus_fn():
     # what_partial_derivatives_are()
     partial_derivative_exercises()
@@ -229,3 +257,4 @@ def partial_derivative_calculus_fn():
     exercises_on_the_multivariate_chain_rule()
     point_by_point_regression()
     the_gradient_of_quadratic_cost()
+    descending_the_gradient_of_cost()
