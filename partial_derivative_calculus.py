@@ -235,8 +235,8 @@ def descending_the_gradient_of_cost():
     yhat = regression(xs, m, b)
 
     def mean_squared_error(my_yhat, my_y):
-        sigma = torch.sum((my_yhat - my_y)**2)
-        return sigma/len(my_y)
+        sigma = torch.sum((my_yhat - my_y) ** 2)
+        return sigma / len(my_y)
 
     cost = mean_squared_error(yhat, ys)
 
@@ -245,6 +245,95 @@ def descending_the_gradient_of_cost():
 
     print(m.grad)
     print(b.grad)
+
+
+def the_gradient_of_mean_squared_error():
+    print("the_gradient_of_mean_squared_error")
+    xs = torch.tensor([0, 1, 2, 3, 4, 5, 6, 7])
+    ys = torch.tensor([1.86, 1.31, .62, .33, .09, -.67, -1.23, -1.37])
+
+    def regression(my_x, my_m, my_b):
+        return my_m * my_x + my_b
+
+    m = torch.tensor([0.9]).requires_grad_()
+    b = torch.tensor([0.1]).requires_grad_()
+
+    # This is a pretty arbitrary estimate.
+
+    yhat = regression(xs, m, b)
+
+    def mean_squared_error(my_yhat, my_y):
+        sigma = torch.sum((my_yhat - my_y) ** 2)
+        return sigma / len(my_y)
+
+    # Calculating the partial derivatives.
+    # Using the partial derivatives calculated above for y = mx + b during the_gradient_of_quadratic_cost.
+    # C = 1/n*Σ(yhat - y)
+    # C = 1/n*Σu & u = yhat - y
+    #  dC/du = 1/n*Σ(2u)
+    #  dC/du = 2/n*Σ(u)
+    #  dC/du = 2/n*Σ(yhat - y)
+    #  du/dyhat = 1 - 0 = 1
+    #  dyhat/dm = x
+    #  dyhat/db = 1
+    #  dC/db = dC/du * du/dyhat * dyhat/db = 2/n*Σ(yhat - y)
+    #  dC/dm = dC/du * du/dyhat * dyhat/dm = 2*x/n*Σ(yhat - y)
+
+    # This is the same as m.grad in the above function descending_the_gradient_of_cost. It shows that this is how the
+    #  autodiff calculates it.
+    print(2 / len(ys) * torch.sum((yhat - ys) * xs))
+
+    # This is the same as b.grad (ditto).
+    print(2 / len(ys) * torch.sum(yhat - ys))
+
+    def labeled_regression_plot(my_x, my_y, my_m, my_b, my_c, include_grad=True):
+
+        title = 'Cost = {}'.format('%.3g' % my_c.item())
+        if include_grad:
+            x_label = 'm = {}, m grad = {}'.format('%.3g' % my_m.item(), '%.3g' % my_m.grad.item())
+            y_label = 'b = {}, b grad = {}'.format('%.3g' % my_b.item(), '%.3g' % my_b.grad.item())
+        else:
+            x_label = 'm = {}'.format('%.3g' % my_m.item())
+            y_label = 'b = {}'.format('%.3g' % my_b.item())
+
+        fig, ax = plt.subplots()
+
+        plt.title(title)
+        plt.ylabel(y_label)
+        plt.xlabel(x_label)
+
+        ax.scatter(my_x, my_y)
+
+        x_min, x_max = ax.get_xlim()
+        y_min_detach = regression(x_min, my_m.detach(), my_b.detach()).numpy()
+        y_max_detach = regression(x_max, my_m.detach(), my_b.detach()).numpy()
+
+        ax.set_xlim([x_min, x_max])
+        _ = ax.plot([x_min, x_max], [y_min_detach, y_max_detach], c='C01')
+
+        plt.show()
+
+    optimizer = torch.optim.SGD([m, b], lr=0.01)
+
+    epochs = 1000
+    for epoch in range(epochs):
+
+        # Reset gradients to zero; else they accumulate.
+        optimizer.zero_grad()
+
+        # Step 1
+        yhat = regression(xs, m, b)
+
+        # Step 2
+        cost = mean_squared_error(yhat, ys)
+
+        # Step 3
+        cost.backward()
+
+        # Step 4
+        optimizer.step()
+
+    labeled_regression_plot(xs, ys, m, b, cost)
 
 
 def partial_derivative_calculus_fn():
@@ -258,3 +347,4 @@ def partial_derivative_calculus_fn():
     point_by_point_regression()
     the_gradient_of_quadratic_cost()
     descending_the_gradient_of_cost()
+    the_gradient_of_mean_squared_error()
