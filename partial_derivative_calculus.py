@@ -317,7 +317,6 @@ def the_gradient_of_mean_squared_error():
 
     epochs = 1000
     for epoch in range(epochs):
-
         # Reset gradients to zero; else they accumulate.
         optimizer.zero_grad()
 
@@ -336,6 +335,19 @@ def the_gradient_of_mean_squared_error():
     labeled_regression_plot(xs, ys, m, b, cost)
 
 
+def backpropagation():
+    print("backpropagation")
+
+    # In general the machine learning can be split up as follows.
+    #  1) Forward propagation: This is simply finding yhat from the input parameters.
+    #  2) Cost: This is finding the cost using some kind of error function such as mean squared error.
+    #  3) Backpropagation: This is where each of the partial derivative is found based on cost (so above it is dC/db and
+    #   dC/dm).
+    #  4) Parameter update: This will use the partial derivatives to update the parameters and take a step closer to the
+    #   'true' answer.
+    # Backpropagation is the way that automatic differentiation calculates the partial derivatives using the chain rule.
+
+
 def partial_derivative_calculus_fn():
     # what_partial_derivatives_are()
     partial_derivative_exercises()
@@ -348,3 +360,4 @@ def partial_derivative_calculus_fn():
     the_gradient_of_quadratic_cost()
     descending_the_gradient_of_cost()
     the_gradient_of_mean_squared_error()
+    backpropagation()
