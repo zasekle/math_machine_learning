@@ -348,6 +348,33 @@ def backpropagation():
     # Backpropagation is the way that automatic differentiation calculates the partial derivatives using the chain rule.
 
 
+def higher_order_partial_derivatives():
+    print("higher_order_partial_derivatives")
+
+    # When dealing with partial derivatives, there are mixed and unmixed partials.
+    # Say I start with z = x^2 + 5*x*y + 2*y^2
+    #  dz/dx = 2x + 5y
+    #  dz/dy = 5x + 4y
+    # Unmixed partial derivatives
+    #  d^2z/dx^2 = 2
+    #  d^2z/dy^2 = 4
+    # Mixed partial derivatives (the below are OFTEN not always equal)
+    #  d^2z/(dx*dy) = 5
+    #  d^2z/(dy*dx) = 5
+
+
+def exercise_on_higher_order_partial_derivatives():
+    print("exercise_on_higher_order_partial_derivatives")
+
+    # z = x^3 + 2xy
+    # dz/dx = 3x^2 + 2y
+    # dz/dy = 2x
+    # d^2z/dx^2 = 6x
+    # d^2z/dy^2 = 0
+    # d^2z/(dy*dx) = 2
+    # d^2z/(dx*dy) = 2
+
+
 def partial_derivative_calculus_fn():
     # what_partial_derivatives_are()
     partial_derivative_exercises()
@@ -361,3 +388,5 @@ def partial_derivative_calculus_fn():
     descending_the_gradient_of_cost()
     the_gradient_of_mean_squared_error()
     backpropagation()
+    higher_order_partial_derivatives()
+    exercise_on_higher_order_partial_derivatives()
