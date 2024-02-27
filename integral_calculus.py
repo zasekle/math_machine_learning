@@ -19,5 +19,21 @@ def binary_classification():
     #  curve) metric.
 
 
+def the_confusion_matrix():
+    print("the_confusion_matrix")
+
+    # The confusion matrix is a way to check if the algorithm is "confused" or not.
+
+    #                        Confusion Matrix
+    #                             actual y
+    #               |       1        |        0       |
+    #             -------------------------------------
+    #             1 | True positive  | False positive |
+    # predicted y -------------------------------------
+    #             0 | False negative | True negative  |
+    #             -------------------------------------
+
+
 def integral_calculus_fn():
     binary_classification()
+    the_confusion_matrix()
