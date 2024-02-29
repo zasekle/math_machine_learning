@@ -34,6 +34,21 @@ def the_confusion_matrix():
     #             -------------------------------------
 
 
+def the_receiver_operating_characteristic_roc_curve():
+    print("the_receiver_operating_characteristic_ROC_curve")
+
+    # This curve has a few steps involved with it. However, basically it represents how successfully the known data was
+    #  matched by the machine learning algorithm. It looks at different thresholds for data and finds the percentage
+    #  of negative cases that are incorrectly identified as positive vs the proportion of actual positive cases that are
+    #  correctly identified by the model. Then it graphs them against each other and the area under this curve is the
+    #  marker for how "correct" the machine learning model is.
+
+    # Fundamentally, this is about graphing number that are true positives vs number true negatives. In other words how
+    #  often the algorithm is correct. When it is the highest possible (1 vs 1), this means that it is correct every
+    #  time.
+
+
 def integral_calculus_fn():
     binary_classification()
     the_confusion_matrix()
+    the_receiver_operating_characteristic_roc_curve()
